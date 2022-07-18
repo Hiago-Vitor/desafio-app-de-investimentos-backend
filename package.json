@@ -1,0 +1,34 @@
+{
+  "name": "app-de-investimentos-backend",
+  "version": "1.0.0",
+  "description": "aplicação backend do desafio tecnico da XP Inc.",
+  "main": "src/server.js",
+  "scripts": {
+    "prestart": "npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
+    "drop": "npx sequelize db:drop",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hiago-Vitor/desafio-app-de-investimentos-backend.git"
+  },
+  "author": "Hiago Vitor Rodrigues F Da Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hiago-Vitor/desafio-app-de-investimentos-backend/issues"
+  },
+  "homepage": "https://github.com/Hiago-Vitor/desafio-app-de-investimentos-backend#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.3",
+    "sequelize-cli": "^6.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.20.0",
+    "nodemon": "^2.0.19"
+  }
+}
