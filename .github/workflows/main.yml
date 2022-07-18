@@ -1,0 +1,13 @@
+on:
+  [push, pull_request]
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1.4.4
+        with:
+          node-version: 14
+      - run: npm install
+      - run: npx eslint .
