@@ -3,9 +3,9 @@
         "browser": true,
         "es2021": true
     },
-    "extends": "trybe-backend",
+    "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 12,
+        "ecmaVersion": "latest",
         "sourceType": "module"
     },
     "rules": {
