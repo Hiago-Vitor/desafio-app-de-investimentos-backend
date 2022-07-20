@@ -1,13 +1,13 @@
 {
-  "env": {
-      "browser": true,
-      "commonjs": true,
-      "es2021": true
-  },
-  "extends": "trybe-backend",
-  "parserOptions": {
-      "ecmaVersion": "latest"
-  },
-  "rules": {
-  }
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": "trybe-backend",
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "rules": {
+    }
 }
