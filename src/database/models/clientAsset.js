@@ -12,14 +12,14 @@ module.exports = (sequelize, DataTypes) => {
   }, { timestamps: false });
 
   ClientAssetTable.associate = (models) => {
-    models.Client.belongsToMany(models.Assets, {
+    models.Client.belongsToMany(models.Asset, {
       as: 'assets',
       through: ClientAssetTable,
       foreingnKey: 'codClient',
       otherKey: 'codAsset'
     });
 
-    models.Asset.belongsToMany(models.Clients, {
+    models.Asset.belongsToMany(models.Client, {
       as: 'clients',
       through: ClientAssetTable,
       foreingnKey: 'codAsset',
