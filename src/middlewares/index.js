@@ -1,3 +1,4 @@
 const errorMiddleware = require('./errorMdwr');
+const validateLogin = require('./validateLogin');
 
-module.exports = { errorMiddleware };
+module.exports = { errorMiddleware, validateLogin };
