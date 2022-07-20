@@ -1,5 +1,5 @@
 const express = require('express');
-const { errorMiddleware } = require('./middlewares')
+const { errorMiddleware } = require('./middlewares');
 const { loginRoute } = require('./routes');
 
 const app = express();
