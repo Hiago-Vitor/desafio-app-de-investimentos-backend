@@ -19,6 +19,21 @@ const validateBuy = (asset, client, cust, qtdRequired) => {
     return true;
 };
 
+const buyExistingAsset = async ({ codClient, codAsset, soldAssetQtd, rebate, assetQtd }) => {
+    const response = await sequelize.transaction(async (t) => {
+        await SoldAsset.update({
+            qtdPurchased: soldAssetQtd,
+        }, { where: { codAsset, codClient } }, { transaction: t });
+        await Client.update(
+            { balance: rebate }, { where: { idClient: codClient } }, { transaction: t },
+        );
+        await Asset.update(
+            { quantity: assetQtd }, { where: { idAsset: codAsset } }, { transaction: t },
+            );
+        });
+    return response;
+};
+
 const buyAssetServ = async ({ codClient, codAsset, qtdAsset: qtdPurchased }) => {
     const client = await Client.findByPk(codClient);
     const asset = await Asset.findByPk(codAsset);
@@ -28,6 +43,10 @@ const buyAssetServ = async ({ codClient, codAsset, qtdAsset: qtdPurchased }) => 
     const cust = asset.dataValues.price * qtdPurchased;
     const rebate = client.dataValues.balance - cust;
     validateBuy(asset, client, cust, qtdPurchased);
+    if (dataValues) {
+        await buyExistingAsset({ codClient, codAsset, soldAssetQtd, rebate, assetQtd });
+        return 'existing';
+    } 
     return true;
 };
 
