@@ -34,6 +34,23 @@ const buyExistingAsset = async ({ codClient, codAsset, soldAssetQtd, rebate, ass
     return response;
 };
 
+const buyNewAsset = async ({ codClient, codAsset, rebate, assetQtd, qtdPurchased }) => {
+    const response = await sequelize.transaction(async (t) => {
+        await SoldAsset.create(
+            { codAsset, codClient, qtdPurchased },
+            { where: { codAsset, codClient } }, { transaction: t },
+            );
+        await Client.update(
+            { balance: rebate }, { where: { idClient: codClient } }, { transaction: t },
+        );
+        await Asset.update(
+            { quantity: assetQtd }, { where: { idAsset: codAsset } }, { transaction: t },
+            );
+        });
+
+    return response;
+};
+
 const buyAssetServ = async ({ codClient, codAsset, qtdAsset: qtdPurchased }) => {
     const client = await Client.findByPk(codClient);
     const asset = await Asset.findByPk(codAsset);
