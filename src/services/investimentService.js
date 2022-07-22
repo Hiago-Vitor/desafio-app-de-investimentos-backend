@@ -1,4 +1,8 @@
+const Sequelize = require('sequelize');
+const config = require('../database/config/config');
 const { SoldAsset, Asset, Client } = require('../database/models');
+
+const sequelize = new Sequelize(config.development);
 
 const validateBuy = (asset, client, cust, qtdRequired) => {
     if (!client || !asset) {
