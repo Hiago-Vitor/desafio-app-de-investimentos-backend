@@ -15,10 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 0
     }
   }, { timestamps: false });
-  
-  AssetTable.associate = (models) => {
-    AssetTable.hasMany(models.ClientAsset, { as: 'clientAssets', foreignKey: 'codAsset' })
-  }
 
   return AssetTable;
 };
