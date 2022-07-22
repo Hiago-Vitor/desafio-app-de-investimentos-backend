@@ -64,6 +64,8 @@ const buyAssetServ = async ({ codClient, codAsset, qtdAsset: qtdPurchased }) => 
         await buyExistingAsset({ codClient, codAsset, soldAssetQtd, rebate, assetQtd });
         return 'existing';
     } 
+    await buyNewAsset({ codClient, codAsset, rebate, assetQtd, qtdPurchased });
+
     return true;
 };
 
