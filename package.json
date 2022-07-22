@@ -4,14 +4,14 @@
   "description": "aplicação backend do desafio tecnico da XP Inc.",
   "main": "src/server.js",
   "scripts": {
-    "create": "npx sequelize-cli db:create",
+    "create": "npx sequelize-cli db:create && npx sequelize-cli db:migrate",
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
     "drop": "npx sequelize-cli db:drop",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run create && npm run migrate && npm run seed && nodemon server.js",
-    "dev": "nodemon server.js",
-    "prepare": "npm i && docker-compose up -d && docker exec -it exchange_app bash"
+    "load": "npm run create && npm run migrate && npm run seed",
+    "docker": "docker-compose up -d && docker exec -it exchange_app bash",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
