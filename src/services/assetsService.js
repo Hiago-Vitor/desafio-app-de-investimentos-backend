@@ -2,7 +2,8 @@ const { Asset, SoldAsset } = require('../database/models');
 
 const getById = async ({ id }) => {
     const { dataValues } = await Asset.findByPk(id);
-    if (!dataValues) throw { status: 404, message: 'ativo inexistente' };
+    
+    if (!dataValues) return false;
 
     const asset = {
         codAsset: dataValues.idAsset,
@@ -18,8 +19,9 @@ const getByClient = async ({ id }) => {
         where: { codClient: id },
         include: { model: Asset, as: 'assets', attributes: ['price'] },
     });
-
-    if (!clientAsset) throw { status: 404, message: 'o cliente não possui ativos' };
+    
+    if (!clientAsset) return false;
+    
     const response = clientAsset.map((item) => ({
         codAsset: item.codAsset,
         codClient: item.codClient,
