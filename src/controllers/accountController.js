@@ -1,19 +1,29 @@
-const { accountService: { deposit, withdraw, balance } } = require('../services');
+const { accountService } = require('../services');
 
 const newDeposit = async (req, res) => {
-    await deposit(req.body);
+    const response = await accountService.deposit(req.body);
+
+    if (!response) return res.status(401).json({ message: 'cliente não existe na base de dados' });
 
     return res.status(201).json({ message: 'depósito realizado com sucesso' });
 };
 
 const newWithdraw = async (req, res) => {
-    await withdraw(req.body);
+    const response = await accountService.withdraw(req.body);
+
+    if (!response) return res.status(401).json({ message: 'cliente não existe na base de dados' });
 
     return res.status(201).json({ message: 'saque realizado com sucesso' });
 };
 
 const getBalance = async (req, res) => {
-    const clientBalance = await balance(req.params);
+    const clientBalance = await accountService.balance(req.params);
+
+    if (!clientBalance) {
+        return res.status(401).json(
+            { message: 'cliente não existe na base de dados' },
+        );
+    }
 
     return res.status(200).json(clientBalance);
 };

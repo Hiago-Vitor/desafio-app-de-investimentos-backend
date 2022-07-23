@@ -1,8 +1,8 @@
-const { exchangeService: { getAll } } = require('../services');
+const { exchangeService } = require('../services');
 
-const getAllAssets = async (_req, _res) => {
-    const assets = await getAll();
+const getAllAssets = async (_req, res) => {
+    const assets = await exchangeService.getAll();
     
-    return assets;
+    return res.status(200).json(assets);
 };
 module.exports = { getAllAssets };
