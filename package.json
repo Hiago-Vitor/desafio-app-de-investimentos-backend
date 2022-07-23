@@ -33,12 +33,16 @@
     "sequelize": "6.3.4"
   },
   "devDependencies": {
+    "chai": "^4.3.6",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-trybe-backend": "^1.0.4",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-sonarjs": "^0.13.0",
+    "mocha": "^10.0.0",
     "nodemon": "^2.0.19",
-    "sequelize-cli": "6.2.0"
+    "sequelize-cli": "6.2.0",
+    "sinon": "^14.0.0",
+    "sinon-chai": "^3.7.0"
   }
 }
