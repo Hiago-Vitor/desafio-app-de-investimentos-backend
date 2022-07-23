@@ -27,10 +27,11 @@ describe('Test exchangeController', () => {
         });
 
         it('returns with status 200 and with an object', async () => {
-            const res = await exchangeController.getAllAssets(request, response);
+            await exchangeController.getAllAssets(request, response);
             
             expect(response.status).to.have.been.calledOnceWith(200);
-            expect(res).to.be.equal(servResponse);
+            expect(response.json).to.have.been.calledOnceWith(sinon.match.array);
+            expect(response.json).to.have.been.calledOnceWith(servResponse);
 
         });
     });

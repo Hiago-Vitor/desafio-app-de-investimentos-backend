@@ -39,11 +39,26 @@ describe('Test assetsController', () => {
     describe('getAssetByClient', () => {
         const response = {};
         const request = {};
-        const servResponse = {
-            codAsset: 7,
-            qtdAsset: 100,
-            value: 10.03
-        };
+        const servResponse = [
+            {
+                codAsset: 1,
+                codClient: 1,
+                qtdPurchased: 7,
+                value: 28.74
+            },
+            {
+                codAsset: 2,
+                codClient: 1,
+                qtdPurchased: 5,
+                value: 28.74
+            },
+            {
+                codAsset: 5,
+                codClient: 1,
+                qtdPurchased: 5,
+                value: 28.74
+            }
+        ];
 
         before(() => {
             response.status = sinon.stub().returns(response);
@@ -59,7 +74,7 @@ describe('Test assetsController', () => {
             await assetsController.getAssetByClient(request, response);
 
             expect(response.status).to.have.been.calledOnceWith(200);
-            expect(response.json).to.have.been.calledOnceWith(sinon.match.object);
+            expect(response.json).to.have.been.calledOnceWith(sinon.match.array);
             expect(response.json).to.have.been.calledOnceWith(servResponse);
         });
     });
