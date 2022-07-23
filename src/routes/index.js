@@ -1,4 +1,7 @@
 const loginRoute = require('./loginRoute');
-const investimentRoute = require('./investmentsRoute');
+const investimentsRoute = require('./investmentsRoute');
+const assetsRoute = require('./assetsRoutes');
+const accountRoute = require('./accountRoute');
+const exchangeRoute = require('./exchangeRoute');
 
-module.exports = { loginRoute, investimentRoute };
+module.exports = { loginRoute, investimentsRoute, assetsRoute, accountRoute, exchangeRoute };
