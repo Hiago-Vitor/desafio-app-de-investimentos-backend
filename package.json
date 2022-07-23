@@ -4,6 +4,7 @@
   "description": "aplicação backend do desafio tecnico da XP Inc.",
   "main": "src/server.js",
   "scripts": {
+    "test:mocha": "mocha tests/**/*.js --exit",
     "create": "npx sequelize-cli db:create && npx sequelize-cli db:migrate",
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
