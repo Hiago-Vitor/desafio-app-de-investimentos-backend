@@ -4,10 +4,8 @@ const { createToken } = require('../utils/jwt');
 const authClient = async ({ email, password }) => {
   const clientData = await Client.findOne({ where: { email, password } });
 
-  if (!clientData) {
-    throw { status: 401, message: 'login não autorizado' };
-  }
-
+  if (!clientData) return false;
+  
   const token = createToken(clientData.dataValues);
 
   return { token };
