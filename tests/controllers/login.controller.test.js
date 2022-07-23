@@ -8,7 +8,7 @@ chai.use(sinonChai);
 const expect = chai.expect;
 
 describe('Test loginController', () => {
-    describe('login', () => {
+    describe('authClient', () => {
         const response = {};
         const request = {
             email: "test@test.com",
@@ -37,4 +37,27 @@ describe('Test loginController', () => {
         });
     });
 
+    describe('authClient in case of login unauthorized', () => {
+        const response = {};
+        const request = {};
+        const servResponse = { message: 'login não autorizado' };
+
+        before(() => {
+            response.status = sinon.stub().returns(response);
+            response.json = sinon.stub().returns();
+            sinon.stub(loginService, 'authClient').resolves(false);
+        });
+
+        after(() => {
+            loginService.authClient.restore();
+        });
+
+        it('returns with status 200 and with an object', async () => {
+            await loginController.authClient(request, response);
+
+            expect(response.status).to.have.been.calledOnceWith(401);
+            expect(response.json).to.have.been.calledOnceWith(sinon.match.object);
+            expect(response.json).to.have.been.calledOnceWith(servResponse);
+        });
+    });
 });
