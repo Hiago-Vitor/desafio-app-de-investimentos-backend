@@ -1,7 +1,7 @@
 const { accountService } = require('../services');
 
 const newDeposit = async (req, res) => {
-    const response = await accountService.deposit(req.body);
+    const response = await accountService.deposit(req.user, req.body);
 
     if (!response) return res.status(401).json({ message: 'cliente não existe na base de dados' });
 
@@ -9,7 +9,7 @@ const newDeposit = async (req, res) => {
 };
 
 const newWithdraw = async (req, res) => {
-    const response = await accountService.withdraw(req.body);
+    const response = await accountService.withdraw(req.user, req.body);
 
     if (!response) return res.status(401).json({ message: 'cliente não existe na base de dados' });
 
@@ -17,7 +17,7 @@ const newWithdraw = async (req, res) => {
 };
 
 const getBalance = async (req, res) => {
-    const clientBalance = await accountService.balance(req.params);
+    const clientBalance = await accountService.balance(req.user);
 
     if (!clientBalance) {
         return res.status(401).json(

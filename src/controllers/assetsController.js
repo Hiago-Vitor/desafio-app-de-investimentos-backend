@@ -9,7 +9,7 @@ const getAssetById = async (req, res) => {
 };
 
 const getAssetByClient = async (req, res) => {
-    const asset = await assetsService.getByClient(req.params);
+    const asset = await assetsService.getByClient(req.user);
 
     if (!asset) return res.status(404).json({ message: 'ativo inexistente' });
 
