@@ -1,7 +1,6 @@
 const Joi = require('joi');
 
 const validateData = Joi.object({
-    codClient: Joi.number().required(),
     codAsset: Joi.number().required(),
     qtdAsset: Joi.number().min(1).required(),
 });
