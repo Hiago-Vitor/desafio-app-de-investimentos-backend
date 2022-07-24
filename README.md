@@ -1,6 +1,6 @@
 # Challenge Xp Inc. backend
 
-API basica para uma aplicativo de investimentos em ações com algumas funções de conta digital.
+API basica para um aplicativo de investimentos em ações com algumas funções de conta digital.
 
 ## Sobre o Projeto
 
@@ -11,6 +11,7 @@ Neste projeto foi desenvolvido uma API com as seguintes funcionalidades:
 - Comprar e vender ações
 - Depositar e sacar o dinheiro da conta
 - Acessar ações compradas
+- Acessar saldo pessoal
 - Acessar ações disponiveis para compra
 
 ## Como executar o projeto:
@@ -90,7 +91,9 @@ npm run test:mocha
 
 - Criação do endpoin `/login` para autenticação do cliente com as bibliotecas JWT e bcrypt
 
-- Alteração nas requisiçoes que pediam o id do cliente, agora a informação é carregada pelo dado contido no token criado no login.
+- Alteração nas requisiçoes que pediam o id do cliente, agora a informação é lida pelo dado contido no token criado no login.
+
+Fiz essas alterações pois antes o usuario poderia comprar ativos, realizar deposistos, saques e consultas de dados de outros clientes.
 
 ### Em função do tempo, no caso da documentação no Swagger não estar pronta ate a entrega do desafio preparei duas colections para mapear os endpoits:
 
