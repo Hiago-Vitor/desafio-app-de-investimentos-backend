@@ -33,7 +33,7 @@ const sellTransaction = async ({ codClient, codAsset, soldAssetQtd, newBalance, 
     return response;
 };
 
-const sellAssetServ = async ({ codClient, codAsset, qtdAsset: qtdOnSale }) => {
+const sellAssetServ = async ({ idClient: codClient }, { codAsset, qtdAsset: qtdOnSale }) => {
     const soldAsset = await SoldAsset.findOne({ where: { codAsset, codClient } });
     const client = await Client.findByPk(codClient);
     const asset = await Asset.findByPk(codAsset);

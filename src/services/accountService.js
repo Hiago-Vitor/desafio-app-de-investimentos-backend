@@ -1,6 +1,6 @@
 const { Client } = require('../database/models');
 
-const deposit = async ({ codClient, value }) => {
+const deposit = async ({ idClient: codClient }, { value }) => {
     const client = await Client.findByPk(codClient);
     if (!client) return false;
     const newBalance = value + client.balance;
@@ -11,7 +11,7 @@ const deposit = async ({ codClient, value }) => {
     return true;
 };
 
-const withdraw = async ({ codClient, value }) => {
+const withdraw = async ({ idClient: codClient }, { value }) => {
     const client = await Client.findByPk(codClient);
     if (!client) return false;
     if (value >= client.balance) {
@@ -26,8 +26,8 @@ const withdraw = async ({ codClient, value }) => {
     return true;
 };
 
-const balance = async ({ id }) => {
-    const client = await Client.findByPk(id, { attributes: ['idClient', 'balance'] });
+const balance = async ({ idClient }) => {
+    const client = await Client.findByPk(idClient, { attributes: ['idClient', 'balance'] });
 
     if (!client) return false;
     

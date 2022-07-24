@@ -14,9 +14,9 @@ const getById = async ({ id }) => {
     return asset;
 };
 
-const getByClient = async ({ id }) => {
+const getByClient = async ({ idClient }) => {
     const clientAsset = await SoldAsset.findAll({
-        where: { codClient: id },
+        where: { codClient: idClient },
         include: { model: Asset, as: 'assets', attributes: ['price'] },
     });
     
