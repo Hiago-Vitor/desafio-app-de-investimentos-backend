@@ -28,7 +28,7 @@ const getByClient = async ({ idClient }) => {
         qtdPurchased: item.qtdPurchased,
         value: item.assets.price,
     }))
-        .filter((it) => it.qtdPurchased >= 0);
+        .filter((it) => it.qtdPurchased > 0);
 
     return response;
 };
