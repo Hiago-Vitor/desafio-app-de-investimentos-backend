@@ -85,6 +85,13 @@ npm run test:mocha
 </details>
 <br>
 <details>
+  <summary><strong>⚠️ Swagger ⚠️</strong></summary><br />
+
+ - A documentação do swagger encontra-se incompleta porem esta mapeando todas as rotas na rota `localhost:3000/api-docs`
+
+</details>
+<br>
+<details>
   <summary><strong>Tomadas de Decisão</strong></summary><br>
 
 ### Visando qualidade, segurança e confiabilidade, algumas mudanças foram feitas nos endpoints requeridos pelo desafio, como:
@@ -97,9 +104,9 @@ Fiz essas alterações pois antes o usuario poderia comprar ativos, realizar dep
 
 ### Em função do tempo, no caso da documentação no Swagger não estar pronta ate a entrega do desafio preparei duas colections para mapear os endpoits:
 
-É necessario possuir o [Insomnia](https://insomnia.rest/download) ou o [Postman](https://www.postman.com/downloads/) instalados, para utilizar uma das collections.
+É necessario possuir o [Insomnia](https://insomnia.rest/download) ou o [Postman](https://www.postman.com/downloads/) instalados, para utilizar uma das collections que estão na raiz do projeto.
 
-</details><br />
+</details>
 
 ## Considerações Finais
 
