@@ -4,8 +4,8 @@ const { validateToken } = require('../middlewares');
 
 const routes = express.Router();
 
-routes.get('/client', validateToken, getAssetByClient);
+routes.get('/assets/client', validateToken, getAssetByClient);
 
-routes.get('/:id', getAssetById);
+routes.get('/assets/:id', getAssetById);
 
 module.exports = routes;

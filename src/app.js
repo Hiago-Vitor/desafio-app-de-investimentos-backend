@@ -1,22 +1,22 @@
 const express = require('express');
 require('express-async-errors');
-const { errorMiddleware } = require('./middlewares');
-const {
-    loginRoute, investimentsRoute, assetsRoute, accountRoute, exchangeRoute } = require('./routes');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../swagger.json');
 
-const app = express();
+const { errorMiddleware } = require('./middlewares');
+const accountRoute = require('./routes/accountRoutes');
+const assetsRoutes = require('./routes/assetsRoutes');
+const exchangeRoute = require('./routes/exchangeRoute');
+const investmentsRoute = require('./routes/investmentsRoutes');
+const loginRoute = require('./routes/loginRoute');
+    
+    const app = express();
+    
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(express.json());
 
-app.use('/login', loginRoute);
-
-app.use('/investiments', investimentsRoute);
-
-app.use('/assets', assetsRoute);
-
-app.use('/account', accountRoute);
-
-app.use('/exchange', exchangeRoute);
+app.use(accountRoute, assetsRoutes, exchangeRoute, investmentsRoute, loginRoute);
 
 app.use(errorMiddleware);
 
