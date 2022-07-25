@@ -1,0 +1,53 @@
+{
+  "name": "app-de-investimentos-backend",
+  "version": "1.0.0",
+  "description": "aplicação backend do desafio tecnico da XP Inc.",
+  "main": "src/server.js",
+  "scripts": {
+    "test:mocha": "mocha tests/**/*.js --exit",
+    "create": "npx sequelize-cli db:create && npx sequelize-cli db:migrate",
+    "migrate": "npx sequelize-cli db:migrate",
+    "seed": "npx sequelize-cli db:seed:all",
+    "drop": "npx sequelize-cli db:drop",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "load": "npm run create && npm run migrate && npm run seed",
+    "docker": "docker-compose up -d && docker exec -it exchange_app bash",
+    "dev": "nodemon server.js",
+    "swagger-autogen": "node swagger.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hiago-Vitor/desafio-app-de-investimentos-backend.git"
+  },
+  "author": "Hiago Vitor Rodrigues F Da Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hiago-Vitor/desafio-app-de-investimentos-backend/issues"
+  },
+  "homepage": "https://github.com/Hiago-Vitor/desafio-app-de-investimentos-backend#readme",
+  "dependencies": {
+    "bcrypt-node": "^0.1.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "6.3.4",
+    "swagger-autogen": "^2.21.5",
+    "swagger-ui-express": "^4.5.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-trybe-backend": "^1.0.4",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-sonarjs": "^0.13.0",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.19",
+    "sequelize-cli": "6.2.0",
+    "sinon": "^14.0.0",
+    "sinon-chai": "^3.7.0"
+  }
+}

@@ -1,0 +1,4 @@
+**/migrations/
+**/seeders/
+**/models/
+tests

@@ -1,0 +1,181 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Exchange App",
+    "description": ""
+  },
+  "host": "http://localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "description": "Login do cliente",
+        "requestBody": {
+          "description": "Dados necessarios para login",
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/requesLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Em caso de sucesso",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/responseLogin"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Em caso de não autorizado"
+          }
+        }
+      }
+    },
+    "/account/deposit": {
+      "put": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/account/withdraw": {
+      "put": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/account": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/investiments/buy": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/investiments/sell": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/assets/client": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/assets/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/exchange": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "requesLogin": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "test@test.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "password"
+          }
+        }
+      },
+      "responseLogin": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudCI6MSwibmFtZSI6InRlc3RlIiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNjU4Njg5MjczLCJleHAiOjE2NTg2OTAxNzN9.ojwYvZdQ2TkbEmXr9TcBQd24auVYIp37sqmcKzYhvbE"
+          }
+        }
+      }
+    }
+  }
+}

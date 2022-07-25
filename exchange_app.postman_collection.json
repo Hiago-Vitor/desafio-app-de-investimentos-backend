@@ -1,0 +1,294 @@
+{
+	"info": {
+		"_postman_id": "0cc9a368-95e8-400e-93a6-a5832800a2b2",
+		"name": "exchange_app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "newWithdraw",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudCI6MSwibmFtZSI6InRlc3RlIiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNjU4NjgyODc2LCJleHAiOjE2NTg2ODM3NzZ9.JjGBOeqTRYiOfd9CXiIawRXho5tOXyBuDk66xeUlvFU",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://exchange-app-hiago-vitor.herokuapp.com/account/withdraw",
+							"protocol": "https",
+							"host": [
+								"exchange-app-hiago-vitor",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"account",
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "newDeposit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudCI6MSwibmFtZSI6InRlc3RlIiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNjU4NjgyODc2LCJleHAiOjE2NTg2ODM3NzZ9.JjGBOeqTRYiOfd9CXiIawRXho5tOXyBuDk66xeUlvFU",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://exchange-app-hiago-vitor.herokuapp.com/account/deposit",
+							"protocol": "https",
+							"host": [
+								"exchange-app-hiago-vitor",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"account",
+								"deposit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBalance",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudCI6MSwibmFtZSI6InRlc3RlIiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNjU4NjgyODc2LCJleHAiOjE2NTg2ODM3NzZ9.JjGBOeqTRYiOfd9CXiIawRXho5tOXyBuDk66xeUlvFU",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "https://exchange-app-hiago-vitor.herokuapp.com/account",
+							"protocol": "https",
+							"host": [
+								"exchange-app-hiago-vitor",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Assets",
+			"item": [
+				{
+					"name": "getAllAssets",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://exchange-app-hiago-vitor.herokuapp.com/exchange",
+							"protocol": "https",
+							"host": [
+								"exchange-app-hiago-vitor",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"exchange"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAssetbyId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://exchange-app-hiago-vitor.herokuapp.com/assets/7",
+							"protocol": "https",
+							"host": [
+								"exchange-app-hiago-vitor",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"assets",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAssetsByClient",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudCI6MSwibmFtZSI6InRlc3RlIiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNjU4NjgyODc2LCJleHAiOjE2NTg2ODM3NzZ9.JjGBOeqTRYiOfd9CXiIawRXho5tOXyBuDk66xeUlvFU",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "https://exchange-app-hiago-vitor.herokuapp.com/assets/client",
+							"protocol": "https",
+							"host": [
+								"exchange-app-hiago-vitor",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"assets",
+								"client"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Investiments",
+			"item": [
+				{
+					"name": "buyAsset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudCI6MSwibmFtZSI6InRlc3RlIiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNjU4NjgyODc2LCJleHAiOjE2NTg2ODM3NzZ9.JjGBOeqTRYiOfd9CXiIawRXho5tOXyBuDk66xeUlvFU",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codAsset\": 7,\n    \"qtdAsset\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://exchange-app-hiago-vitor.herokuapp.com/investiments/buy",
+							"protocol": "https",
+							"host": [
+								"exchange-app-hiago-vitor",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"investiments",
+								"buy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sellAsset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudCI6MSwibmFtZSI6InRlc3RlIiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNjU4NjgyODc2LCJleHAiOjE2NTg2ODM3NzZ9.JjGBOeqTRYiOfd9CXiIawRXho5tOXyBuDk66xeUlvFU",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codAsset\": 7,\n    \"qtdAsset\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://exchange-app-hiago-vitor.herokuapp.com/investiments/sell",
+							"protocol": "https",
+							"host": [
+								"exchange-app-hiago-vitor",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"investiments",
+								"sell"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@test.com\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://exchange-app-hiago-vitor.herokuapp.com/login",
+					"protocol": "https",
+					"host": [
+						"exchange-app-hiago-vitor",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

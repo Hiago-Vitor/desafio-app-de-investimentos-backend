@@ -1,0 +1,7 @@
+node_modules/
+tests/
+actions/
+.env
+.git
+README.md
+.eslint*
