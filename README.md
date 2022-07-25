@@ -31,7 +31,7 @@ cd desafio-app-de-investimentos-backend
 É necessario renomear o arquivo `.env.example` para `.env`:
 
 - não é necessario alterar as variaveis
-- o projeto roda nas portas 3000 para o node e 3306 para o MySQL
+- o projeto roda nas portas 3000 para o Node e 3306 para o MySQL
 
 Use o Docker para carregar e depois disponibilizar todos os serviços necessários ao funcionamento:
 
@@ -62,13 +62,14 @@ npm run test:mocha
 <details>
   <summary><strong>Como fazer login na aplicação:</strong></summary><br />
   
-  ### Para acessar a aplicação, seja localmente ou pelo deploy a apliação conta com dois usuarios ja cadastrados com as seguintes credenciais:
+  ### Para acessar a aplicação, seja localmente ou pelo deploy a aplicação conta com dois usuarios ja cadastrados com as seguintes credenciais:
 
 - ### User: teste
 - email: `test@test.com`
 - password: `password`
 <br>
 <br>
+
 - ### User: teste-2
 - email: `other@test.com`
 - password: `password2`
