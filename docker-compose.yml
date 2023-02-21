@@ -2,7 +2,7 @@ version: "3"
 
 services:
   node:
-    image: node:16
+    image: node:18
     container_name: exchange_app
     tty: true
     stdin_open: true
