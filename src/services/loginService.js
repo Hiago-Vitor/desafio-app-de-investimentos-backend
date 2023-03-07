@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt-node');
+const bcrypt = require('bcrypt');
 const { Client } = require('../database/models');
 const { createToken } = require('../utils/jwt');
 
