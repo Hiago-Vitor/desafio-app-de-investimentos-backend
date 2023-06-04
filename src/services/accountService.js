@@ -27,8 +27,8 @@ const withdraw = async ({ idClient: codClient }, { value }) => {
 };
 
 const balance = async ({ idClient }) => {
-    const client = await Client.findByPk(idClient, { attributes: ['idClient', 'balance'] });
-
+    const client = await Client.findByPk(idClient, { attributes: ['idClient', 'name', 'balance'] });
+    
     if (!client) return false;
     
     return client;

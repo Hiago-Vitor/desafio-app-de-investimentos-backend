@@ -8,16 +8,19 @@
   "host": "http://localhost:3000",
   "basePath": "/",
   "schemes": [
-    "http"
-  ],
+    "http", "https"
+  ],      
   "paths": {
     "/login": {
       "post": {
+        "tags": [
+          "Login"
+        ],
         "description": "Login do cliente",
         "requestBody": {
           "description": "Dados necessarios para login",
           "content": {
-            "aplication/json": {
+            "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/requesLogin"
               }
@@ -28,7 +31,7 @@
           "200": {
             "description": "Em caso de sucesso",
             "content": {
-              "aplication/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/responseLogin"
                 }
@@ -43,8 +46,24 @@
     },
     "/account/deposit": {
       "put": {
-        "description": "",
+        "description": "Realiza novo deposito na conta do cliente",
         "parameters": [],
+        "requestBody": {
+          "description": "Valor do deposito",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "number",
+                    "example": 100
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "Created"
@@ -52,7 +71,12 @@
           "401": {
             "description": "Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/account/withdraw": {
@@ -80,7 +104,12 @@
           "401": {
             "description": "Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
       }
     },
     "/investiments/buy": {
@@ -127,7 +156,9 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -175,6 +206,14 @@
             "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudCI6MSwibmFtZSI6InRlc3RlIiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNjU4Njg5MjczLCJleHAiOjE2NTg2OTAxNzN9.ojwYvZdQ2TkbEmXr9TcBQd24auVYIp37sqmcKzYhvbE"
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme. Example: Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }

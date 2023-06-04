@@ -1,4 +1,3 @@
-// const { SALT } = process.env;
 const bcrypt = require('bcrypt');
 const { Client } = require('../database/models');
 
