@@ -53,13 +53,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "number",
-                    "example": 100
-                  }
-                }
+                "$ref": "#/components/schemas/value"
               }
             }
           }
@@ -83,6 +77,16 @@
       "put": {
         "description": "",
         "parameters": [],
+        "requestBody": {
+          "description": "Valor do deposito",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/value"
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "Created"
@@ -90,7 +94,12 @@
           "401": {
             "description": "Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/account": {
@@ -195,6 +204,15 @@
           "password": {
             "type": "string",
             "example": "password"
+          }
+        }
+      },
+      "value": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "example": 100
           }
         }
       },
