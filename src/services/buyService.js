@@ -4,18 +4,18 @@ const { SoldAsset, Asset, Client } = require('../database/models');
 
 const sequelize = new Sequelize(config.development);
 
-const validateBuy = (asset, client, cust, qtdRequired) => {
-    if (!client || !asset) {
+const validateBuy = (foundAsset, foundClient, cust, qtdRequired) => {
+    if (!foundClient || !foundAsset) {
         throw {
             status: 401, message: 'cliente ou ativo inválido',
         };
     }
-    if (cust > client.dataValues.balance) {
+    if (cust > foundClient.dataValues.balance) {
         throw {
             status: 401, message: 'saldo indisponivel para compra',
         };
     }
-    if (asset.dataValues.quantity < qtdRequired) {
+    if (foundAsset.dataValues.quantity < qtdRequired) {
         throw {
             status: 400, message: 'quantia de ativos solicitada é maior que o disponivel',
         };
@@ -23,7 +23,7 @@ const validateBuy = (asset, client, cust, qtdRequired) => {
     return true;
 };
 
-const buyExistingAsset = async ({ codClient, codAsset, soldAssetQtd, rebate, assetQtd }) => {
+const buyExistingAsset = async ({ codClient, codAsset, soldAssetQtd, rebate, foundAssetQtd }) => {
     const response = await sequelize.transaction(async (t) => {
         await SoldAsset.update({
             qtdPurchased: soldAssetQtd,
@@ -32,13 +32,13 @@ const buyExistingAsset = async ({ codClient, codAsset, soldAssetQtd, rebate, ass
             { balance: rebate }, { where: { idClient: codClient } }, { transaction: t },
         );
         await Asset.update(
-            { quantity: assetQtd }, { where: { idAsset: codAsset } }, { transaction: t },
+            { quantity: foundAssetQtd }, { where: { idAsset: codAsset } }, { transaction: t },
         );
     });
     return response;
 };
 
-const buyNewAsset = async ({ codClient, codAsset, rebate, assetQtd, qtdPurchased }) => {
+const buyNewAsset = async ({ codClient, codAsset, rebate, foundAssetQtd, qtdPurchased }) => {
     const response = await sequelize.transaction(async (t) => {
         await SoldAsset.create(
             { codAsset, codClient, qtdPurchased },
@@ -48,7 +48,7 @@ const buyNewAsset = async ({ codClient, codAsset, rebate, assetQtd, qtdPurchased
             { balance: rebate }, { where: { idClient: codClient } }, { transaction: t },
         );
         await Asset.update(
-            { quantity: assetQtd }, { where: { idAsset: codAsset } }, { transaction: t },
+            { quantity: foundAssetQtd }, { where: { idAsset: codAsset } }, { transaction: t },
         );
     });
 
@@ -56,19 +56,23 @@ const buyNewAsset = async ({ codClient, codAsset, rebate, assetQtd, qtdPurchased
 };
 
 const buyAssetServ = async ({ idClient: codClient }, { codAsset, qtdAsset: qtdPurchased }) => {
-    const client = await Client.findByPk(codClient);
-    const asset = await Asset.findByPk(codAsset);
-    const soldAsset = await SoldAsset.findOne({ where: { codAsset, codClient } });
-    const assetQtd = asset.dataValues.quantity - qtdPurchased;
-    const cust = asset.dataValues.price * qtdPurchased;
-    const rebate = client.dataValues.balance - cust;
-    validateBuy(asset, client, cust, qtdPurchased);
-    if (soldAsset) {
-        const soldAssetQtd = soldAsset.dataValues.qtdPurchased + qtdPurchased;
-        await buyExistingAsset({ codClient, codAsset, soldAssetQtd, rebate, assetQtd });
+    const foundClient = await Client.findByPk(codClient);
+    const foundAsset = await Asset.findByPk(codAsset);
+    const foundSoldAsset = await SoldAsset.findOne({ where: { codAsset, codClient } });
+
+    const foundAssetQtd = foundAsset.dataValues.quantity - qtdPurchased;
+    const cust = foundAsset.dataValues.price * qtdPurchased;
+    const rebate = foundClient.dataValues.balance - cust;
+
+    validateBuy(foundAsset, foundClient, cust, qtdPurchased);
+
+    if (foundSoldAsset) {
+        const soldAssetQtd = foundSoldAsset.dataValues.qtdPurchased + qtdPurchased;
+        await buyExistingAsset({ codClient, codAsset, soldAssetQtd, rebate, foundAssetQtd });
         return true;
     }
-    await buyNewAsset({ codClient, codAsset, rebate, assetQtd, qtdPurchased });
+    
+    await buyNewAsset({ codClient, codAsset, rebate, foundAssetQtd, qtdPurchased });
 
     return true;
 };

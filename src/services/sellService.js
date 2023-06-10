@@ -4,13 +4,13 @@ const { SoldAsset, Asset, Client } = require('../database/models');
 
 const sequelize = new Sequelize(config.development);
 
-const validateSell = (soldAsset, client, payment, qtdOnSale) => {
-    if (!client || !soldAsset) {
+const validateSell = (foundSoldAsset, foundClient, payment, qtdOnSale) => {
+    if (!foundClient || !foundSoldAsset) {
         throw {
             status: 401, message: 'cliente ou ativo inválido',
         };
     }
-    if (soldAsset.dataValues.qtdPurchased < qtdOnSale) {
+    if (foundSoldAsset.dataValues.qtdPurchased < qtdOnSale) {
         throw {
             status: 400, message: 'quantia de ativos solicitada é maior que o disponivel',
         };
@@ -34,14 +34,17 @@ const sellTransaction = async ({ codClient, codAsset, soldAssetQtd, newBalance, 
 };
 
 const sellAssetServ = async ({ idClient: codClient }, { codAsset, qtdAsset: qtdOnSale }) => {
-    const soldAsset = await SoldAsset.findOne({ where: { codAsset, codClient } });
-    const client = await Client.findByPk(codClient);
-    const asset = await Asset.findByPk(codAsset);
-    validateSell(soldAsset, client, qtdOnSale);
-    const payment = asset.dataValues.price * qtdOnSale;
-    const assetQtd = asset.dataValues.quantity + qtdOnSale;
-    const newBalance = client.dataValues.balance + payment;
-    const soldAssetQtd = soldAsset.dataValues.qtdPurchased - qtdOnSale;
+    const foundSoldAsset = await SoldAsset.findOne({ where: { codAsset, codClient } });
+    const foundClient = await Client.findByPk(codClient);
+    const foundAsset = await Asset.findByPk(codAsset);
+
+    validateSell(foundSoldAsset, foundClient, qtdOnSale);
+
+    const payment = foundAsset.dataValues.price * qtdOnSale;
+    const assetQtd = foundAsset.dataValues.quantity + qtdOnSale;
+    const newBalance = foundClient.dataValues.balance + payment;
+    const soldAssetQtd = foundSoldAsset.dataValues.qtdPurchased - qtdOnSale;
+    
     await sellTransaction({ codClient, codAsset, soldAssetQtd, newBalance, assetQtd });
 
     return true;

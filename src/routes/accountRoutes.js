@@ -8,6 +8,6 @@ routes.put('/account/deposit', validateAccount, validateToken, newDeposit);
 
 routes.put('/account/withdraw', validateAccount, validateToken, newWithdraw);
 
-routes.get('/account', validateToken, getBalance);
+routes.get('/account/balance', validateToken, getBalance);
 
 module.exports = routes;

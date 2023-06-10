@@ -8,16 +8,20 @@
   "host": "http://localhost:3000",
   "basePath": "/",
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/login": {
       "post": {
-        "description": "Login do cliente",
+        "tags": [
+          "Login"
+        ],
+        "description": "Login do cliente | Customer login",
         "requestBody": {
-          "description": "Dados necessarios para login",
+          "description": "Dados necessarios para login | Required customer data for login",
           "content": {
-            "aplication/json": {
+            "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/requesLogin"
               }
@@ -26,9 +30,9 @@
         },
         "responses": {
           "200": {
-            "description": "Em caso de sucesso",
+            "description": "Em caso de sucesso | In case of success",
             "content": {
-              "aplication/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/responseLogin"
                 }
@@ -36,98 +40,210 @@
             }
           },
           "401": {
-            "description": "Em caso de não autorizado"
+            "description": "Em caso de não autorizado | In case of unauthorized"
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": [
+          "Register"
+        ],
+        "description": "Realiza cadastro de clientes | Make a new customer register",
+        "requestBody": {
+          "description": "Dados necessarios para cadastro | Required customer data for register",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/requesRegister"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Em caso de sucesso | In case of success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/responseRegister"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Em caso de não autorizado | In case of unauthorized"
           }
         }
       }
     },
     "/account/deposit": {
       "put": {
-        "description": "",
+        "tags": [
+          "Account"
+        ],
+        "description": "Realiza novo deposito na conta do cliente | Make a new deposit in the customer's account",
         "parameters": [],
+        "requestBody": {
+          "description": "Valor do deposito | Deposit value",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/value"
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Criado | Created"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Não autorizado | Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/account/withdraw": {
       "put": {
-        "description": "",
+        "tags": [
+          "Account"
+        ],
+        "description": "Realiza novo saque na conta do cliente | Make a new withdraw in the customer's account",
         "parameters": [],
+        "requestBody": {
+          "description": "Valor do deposito | Deposit value",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/value"
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Criado | Created"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Não autorizado | Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
-    "/account": {
+    "/account/balance": {
       "get": {
-        "description": "",
+        "tags": [
+          "Account"
+        ],
+        "description": "Retorna o saldo da conta do cliente | Returns the customer's account balance",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Não autorizado | Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/investiments/buy": {
       "post": {
-        "description": "",
+        "tags": [
+          "Assets"
+        ],
+        "description": "Realiza compra de ativos | Make a new buy of assets",
         "parameters": [],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Criado | Created"
+          },
+          "401": {
+            "description": "Não autorizado | Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/investiments/sell": {
       "post": {
-        "description": "",
+        "tags": [
+          "Assets"
+        ],
+        "description": "Realiza venda de ativos | Make a new sell of assets",
         "parameters": [],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Criado | Created"
+          },
+          "401": {
+            "description": "Não autorizado | Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/assets/client": {
       "get": {
-        "description": "",
+        "tags": [
+          "Assets"
+        ],
+        "description": "Retorna todos os ativos do cliente | Returns all customer assets",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Não encontrado | Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
-    "/assets/{id}": {
+    "/exchange/asset/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Exchange"
+        ],
+        "description": "Retorna infoemações de um ativo | Returns information about an asset",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -135,14 +251,17 @@
             "description": "OK"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Não encontrado | Not Found"
           }
         }
       }
     },
     "/exchange": {
       "get": {
-        "description": "",
+        "tags": [
+          "Exchange"
+        ],
+        "description": "Retorna informações de todos os ativos disponiveis na corretora | Returns information about all assets available on the exchange",
         "parameters": [],
         "responses": {
           "200": {
@@ -167,6 +286,36 @@
           }
         }
       },
+      "requesRegister": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "test"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "password"
+          }
+        }
+      },
+      "value": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "example": 100
+          }
+        }
+      },
+      "responseRegister": {
+        "type": "string",
+        "example": "Usuario adicionado com sucesso!!!"
+      },
       "responseLogin": {
         "type": "object",
         "properties": {
@@ -175,6 +324,14 @@
             "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZENsaWVudCI6MSwibmFtZSI6InRlc3RlIiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNjU4Njg5MjczLCJleHAiOjE2NTg2OTAxNzN9.ojwYvZdQ2TkbEmXr9TcBQd24auVYIp37sqmcKzYhvbE"
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme. Example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
