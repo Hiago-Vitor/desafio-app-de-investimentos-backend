@@ -80,7 +80,7 @@ npm run test:mocha
 <details>
   <summary><strong>⚠️ Swagger ⚠️</strong></summary><br />
 
- - A documentação do swagger encontra-se incompleta porem esta mapeando todas as rotas na rota `localhost:3000/api-docs`
+ - A documentação do swagger encontra-se na rota `localhost:3000/api-docs`
 
 </details>
 <br>
