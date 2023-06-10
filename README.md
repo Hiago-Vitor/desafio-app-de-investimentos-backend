@@ -78,14 +78,6 @@ npm run test:mocha
 </details>
 <br>
 <details>
-  <summary><strong>Deploy!</strong></summary><br />
-
- ### Link base da API:
- - `https://exchange-app-hiago-vitor.herokuapp.com/` 
-
-</details>
-<br>
-<details>
   <summary><strong>⚠️ Swagger ⚠️</strong></summary><br />
 
  - A documentação do swagger encontra-se incompleta porem esta mapeando todas as rotas na rota `localhost:3000/api-docs`
