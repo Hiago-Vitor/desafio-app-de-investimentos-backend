@@ -24,4 +24,3 @@ module.exports = {
     dialect: 'mysql',
   },
 };
-console.log(process.env);
